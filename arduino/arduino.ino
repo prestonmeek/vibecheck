@@ -1,15 +1,20 @@
 #include <SPI.h>
 #include <SD.h>
-#include <uRTCLib.h>
 #include <SPI.h>
 #include <AudioZero.h>
+#include <DS3231.h>
 
 // https://create.arduino.cc/projecthub/electropeak/sd-card-module-with-arduino-how-to-read-write-data-37f390
 // https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/
 // https://www.c-sharpcorner.com/article/audio-play-using-sd-card-module-and-arduino/ (doesn't use audio amp)
 // https://github.com/arduino-libraries/AudioZero
+// https://github.com/NorthernWidget/DS3231/
 
-uRTCLib rtc(0x68);
+DS3231 Clock;
+
+bool h12Flag;
+bool pmFlag;
+bool century = false;
 
 void setup() {
   Serial.begin(9600);
@@ -17,19 +22,23 @@ void setup() {
   
   Serial.print("Initializing SD card... ");
   
-  if (!SD.begin(10)) {
+  /*if (!SD.begin(10)) {
     Serial.println("initialization failed!");
     while (1);
-  }
+  }*/
+
+  Serial.print("initialization done.");
 
   Serial.print("Initializing RTC module... ");
 
-  URTCLIB_WIRE.begin();
-  rtc.set(0, 56, 12, 5, 13, 1, 22);
+  Wire.begin();
     
   Serial.println("initialization done.");
 
-  playTime(); // for testing
+  // playTime(); // for testing
+  
+  Clock.setEpoch({1668034845UL}, false);    // set epoch time (GMT)
+  Clock.setClockMode(false);                // 24-hour mode
 }
 
 void playTime() {
@@ -73,28 +82,67 @@ void parseTime(String fileNames[4])
   // fileNames[3] = "PM/AM"
 
   // convert to 12-hour time
-  if (rtc.hour() > 12) {
-    fileNames[0] = String(rtc.hour() - 12) + ".wav";
+  // 0 is actually 12 AM
+  if (Clock.getHour(h12Flag, pmFlag) == 0) {
+    fileNames[0] = "12.wav";
+    fileNames[3] = "AM.wav";
+  // 12 is 12 PM
+  } else if (Clock.getHour(h12Flag, pmFlag) == 12) {
+    fileNames[0] = "12.wav";
     fileNames[3] = "PM.wav";
+  // For 13-23, we have to subtract 12
+  } else if (Clock.getHour(h12Flag, pmFlag) > 12) {
+    fileNames[0] = String(Clock.getHour(h12Flag, pmFlag) - 12) + ".wav";
+    fileNames[3] = "PM.wav";
+  // For 0-11, we just treat the time as normal
   } else {
-    fileNames[0] = String(rtc.hour()) + ".wav";
+    fileNames[0] = String(Clock.getHour(h12Flag, pmFlag)) + ".wav";
     fileNames[3] = "AM.wav";
   }
 
-  if (rtc.minute() < 10) {
+  if (Clock.getMinute() < 10) {
     fileNames[1] = "o.wav";
 
-    if (rtc.minute() == 0)
+    if (Clock.getMinute() == 0)
       fileNames[2] = "clock.wav";
     else
-      fileNames[2] = String(rtc.minute()) + ".wav";
+      fileNames[2] = String(Clock.getMinute()) + ".wav";
   } else {
     fileNames[1] = "";
-    fileNames[2] = String(rtc.minute()) + ".wav";
+    fileNames[2] = String(Clock.getMinute()) + ".wav";
   }
+
+  Serial.print("\n");
+
+  Serial.print(fileNames[0] + " " + fileNames[1] + " " + fileNames[2] + " " + fileNames[3]);
+  Serial.println();
 }
 
 void loop() {
-  rtc.refresh();
-  delay(1000);
+    // Just for verification of DS3231 Data
+    // check now the data from ESP8266 and DS3231
+    // get year
+    
+    Serial.print("\n\n");
+    Serial.print(" DateTime of DS3231:     ");
+    Serial.print(Clock.getYear(), DEC);
+    Serial.print("-");
+    Serial.print(Clock.getMonth(century), DEC);
+    Serial.print("-");
+    Serial.print(Clock.getDate(), DEC);
+    Serial.print(" ");
+    Serial.print(Clock.getHour(h12Flag, pmFlag), DEC);
+    Serial.print(":");
+    Serial.print(Clock.getMinute(), DEC);
+    Serial.print(":");
+    Serial.print(Clock.getSecond(), DEC);
+    Serial.print("  -  weekday ");
+    Serial.print(Clock.getDoW(), DEC);
+    Serial.println();
+
+    String fileNames[4];
+
+    parseTime(fileNames);
+ 
+    delay(1000);
 }
