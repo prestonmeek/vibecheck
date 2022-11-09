@@ -9,6 +9,7 @@
 // https://www.c-sharpcorner.com/article/audio-play-using-sd-card-module-and-arduino/ (doesn't use audio amp)
 // https://github.com/arduino-libraries/AudioZero
 // https://github.com/NorthernWidget/DS3231/
+// https://github.com/DFRobot/DFPlayer-Mini-mp3/
 
 DS3231 Clock;
 
@@ -27,7 +28,7 @@ void setup() {
     while (1);
   }*/
 
-  Serial.print("initialization done.");
+  Serial.println("initialization done.");
 
   Serial.print("Initializing RTC module... ");
 
@@ -37,17 +38,17 @@ void setup() {
 
   // playTime(); // for testing
   
-  Clock.setEpoch({1668034845UL}, false);    // set epoch time (GMT)
+  Clock.setEpoch({1668015153UL}, false);    // set epoch time (GMT)
   Clock.setClockMode(false);                // 24-hour mode
 }
 
 void playTime() {
-  String fileNames[4];
+  int fileNames[4][2];
   parseTime(fileNames);
 
   for (int i = 0; i < 4; i++) {
-    if (fileNames[i] != "") {
-      File audioFile = SD.open(fileNames[i]);
+    if (fileNames[i][0] == 0 || fileNames[i][1] == 0) {
+      /*File audioFile = SD.open(fileNames[i]);
 
       if (!audioFile) {
         // if the file didn't open, print an error and stop
@@ -67,55 +68,61 @@ void playTime() {
       Serial.println("End of file. Thank you for listening!");
 
       // not sure if this is needed? was in the example
-      while (true);
+      while (true);*/
     }
    
   }
 }
 
 // can only open 1 file at a time
-void parseTime(String fileNames[4])
+void parseTime(int fileNames[4][2])
 {
   // fileNames[0] = "one-twelve"
   // fileNames[1] = "o'" (if needed, otherwise null)
   // fileNames[2] = "clock" OR "one-fifty nine"
   // fileNames[3] = "PM/AM"
 
+  // Structure of each element: [folder number, file number]
+  // Folder 1 has number segments
+  // Folder 2 has AM/PM (file 1 is AM, file 2 is PM)
+  // Folder 3 has "o" and "clock" (file 1 is "o", file 2 is "clock")
+
   // convert to 12-hour time
   // 0 is actually 12 AM
   if (Clock.getHour(h12Flag, pmFlag) == 0) {
-    fileNames[0] = "12.wav";
-    fileNames[3] = "AM.wav";
+    storeFileSequence(fileNames[0], 1, 12); // 12
+    storeFileSequence(fileNames[3], 2, 1);  // AM
   // 12 is 12 PM
   } else if (Clock.getHour(h12Flag, pmFlag) == 12) {
-    fileNames[0] = "12.wav";
-    fileNames[3] = "PM.wav";
+    storeFileSequence(fileNames[0], 1, 12); // 12
+    storeFileSequence(fileNames[3], 2, 2);  // PM
   // For 13-23, we have to subtract 12
   } else if (Clock.getHour(h12Flag, pmFlag) > 12) {
-    fileNames[0] = String(Clock.getHour(h12Flag, pmFlag) - 12) + ".wav";
-    fileNames[3] = "PM.wav";
+    storeFileSequence(fileNames[0], 1, Clock.getHour(h12Flag, pmFlag) - 12); // hour
+    storeFileSequence(fileNames[3], 2, 2);  // PM
   // For 0-11, we just treat the time as normal
   } else {
-    fileNames[0] = String(Clock.getHour(h12Flag, pmFlag)) + ".wav";
-    fileNames[3] = "AM.wav";
+    storeFileSequence(fileNames[0], 1, Clock.getHour(h12Flag, pmFlag) - 12); // hour
+    storeFileSequence(fileNames[3], 2, 1);  // AM
   }
 
-  if (Clock.getMinute() < 10) {
-    fileNames[1] = "o.wav";
+  if (Clock.getMinute() < 10)
+    storeFileSequence(fileNames[1], 3, 1);  // "o"
+  else
+    storeFileSequence(fileNames[1], 0, 0);  // null
 
-    if (Clock.getMinute() == 0)
-      fileNames[2] = "clock.wav";
-    else
-      fileNames[2] = String(Clock.getMinute()) + ".wav";
-  } else {
-    fileNames[1] = "";
-    fileNames[2] = String(Clock.getMinute()) + ".wav";
-  }
+  if (Clock.getMinute() == 0)
+    storeFileSequence(fileNames[2], 3, 2);  // "clock"
+  else
+    storeFileSequence(fileNames[2], 1, Clock.getMinute());  // minutes
 
-  Serial.print("\n");
-
-  Serial.print(fileNames[0] + " " + fileNames[1] + " " + fileNames[2] + " " + fileNames[3]);
   Serial.println();
+}
+
+void storeFileSequence(int oldSequence[2], int val1, int val2)
+{
+  oldSequence[0] = val1;
+  oldSequence[1] = val2;
 }
 
 void loop() {
@@ -140,9 +147,17 @@ void loop() {
     Serial.print(Clock.getDoW(), DEC);
     Serial.println();
 
-    String fileNames[4];
+    int fileNames[4][2];
 
     parseTime(fileNames);
+
+    Serial.print(fileNames[0][1], DEC);
+    Serial.print("-");
+    Serial.print(fileNames[2][1], DEC);
+    Serial.print("-");
+    Serial.print(fileNames[2][1], DEC);
+    Serial.print("-");
+    Serial.print(fileNames[3][1], DEC);
  
     delay(1000);
 }
