@@ -1,8 +1,9 @@
 #include <SPI.h>
 #include <SD.h>
 #include <SPI.h>
-#include <AudioZero.h>
 #include <DS3231.h>
+#include "SoftwareSerial.h"
+#include "DFRobotDFPlayerMini.h"
 
 // https://create.arduino.cc/projecthub/electropeak/sd-card-module-with-arduino-how-to-read-write-data-37f390
 // https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/
@@ -11,6 +12,12 @@
 // https://github.com/NorthernWidget/DS3231/
 // https://github.com/DFRobot/DFPlayer-Mini-mp3/
 
+SoftwareSerial softwareSerial(11, 10);
+
+// Create the Player object
+DFRobotDFPlayerMini Player;
+
+// Create the RTC object
 DS3231 Clock;
 
 bool h12Flag;
@@ -23,10 +30,13 @@ void setup() {
   
   Serial.print("Initializing SD card... ");
   
-  /*if (!SD.begin(10)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }*/
+  // Init serial port for DFPlayer Mini
+  softwareSerial.begin(9600);
+  if (!Player.begin(softwareSerial)) {
+    Serial.println("Initialization failed!");
+  }
+
+  Player.volume(25);  // 0-30
 
   Serial.println("initialization done.");
 
@@ -35,10 +45,8 @@ void setup() {
   Wire.begin();
     
   Serial.println("initialization done.");
-
-  // playTime(); // for testing
   
-  Clock.setEpoch({1668015153UL}, false);    // set epoch time (GMT)
+  Clock.setEpoch({1668600035UL}, false);    // set epoch time (GMT)
   Clock.setClockMode(false);                // 24-hour mode
 }
 
@@ -47,28 +55,9 @@ void playTime() {
   parseTime(fileNames);
 
   for (int i = 0; i < 4; i++) {
-    if (fileNames[i][0] == 0 || fileNames[i][1] == 0) {
-      /*File audioFile = SD.open(fileNames[i]);
-
-      if (!audioFile) {
-        // if the file didn't open, print an error and stop
-        Serial.println("error opening " + fileNames[i]);
-        while (true);
-      }
-
-      // 44100kHz stereo => 88200 sample rate
-      AudioZero.begin(2 * 44100);
-
-      Serial.print("Playing");
-  
-      // until the file is not finished  
-      AudioZero.play(audioFile);
-      AudioZero.end();
-      
-      Serial.println("End of file. Thank you for listening!");
-
-      // not sure if this is needed? was in the example
-      while (true);*/
+    if (fileNames[i][0] != 0 && fileNames[i][1] != 0) {
+      Player.playFolder(fileNames[i][0], fileNames[i][1]);
+      delay(1300);
     }
    
   }
@@ -77,15 +66,18 @@ void playTime() {
 // can only open 1 file at a time
 void parseTime(int fileNames[4][2])
 {
-  // fileNames[0] = "one-twelve"
-  // fileNames[1] = "o'" (if needed, otherwise null)
-  // fileNames[2] = "clock" OR "one-fifty nine"
-  // fileNames[3] = "PM/AM"
-
-  // Structure of each element: [folder number, file number]
-  // Folder 1 has number segments
-  // Folder 2 has AM/PM (file 1 is AM, file 2 is PM)
-  // Folder 3 has "o" and "clock" (file 1 is "o", file 2 is "clock")
+  /*
+    FORMAT:
+    fileNames[0] = "one-twelve"
+    fileNames[1] = "o'" (if needed, otherwise null)
+    fileNames[2] = "clock" OR "one-fifty nine"
+    fileNames[3] = "PM/AM"
+  
+    Structure of each element: [folder number, file number]
+    Folder 1 has number segments
+    Folder 2 has AM/PM (file 1 is AM, file 2 is PM)
+    Folder 3 has "o" and "clock" (file 1 is "o", file 2 is "clock")
+  */
 
   // convert to 12-hour time
   // 0 is actually 12 AM
@@ -149,15 +141,17 @@ void loop() {
 
     int fileNames[4][2];
 
-    parseTime(fileNames);
+    /*parseTime(fileNames);
 
     Serial.print(fileNames[0][1], DEC);
     Serial.print("-");
-    Serial.print(fileNames[2][1], DEC);
+    Serial.print(fileNames[1][1], DEC);
     Serial.print("-");
     Serial.print(fileNames[2][1], DEC);
     Serial.print("-");
-    Serial.print(fileNames[3][1], DEC);
+    Serial.print(fileNames[3][1], DEC);*/
+
+    playTime();
  
-    delay(1000);
+    delay(3000);
 }

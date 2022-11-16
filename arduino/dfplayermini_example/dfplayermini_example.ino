@@ -1,6 +1,8 @@
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
 
+// Interesting reference (not the same lib): https://github.com/PowerBroker2/DFPlayerMini_Fast
+
 SoftwareSerial softwareSerial(11, 10);
 
 // Create the Player object
