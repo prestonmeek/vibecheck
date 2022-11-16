@@ -5,9 +5,8 @@
 // https://stackoverflow.com/questions/57175348/softwareserial-for-arduino-nano-33-iot
 // https://www.electronics-lab.com/project/mp3-player-using-arduino-dfplayer-mini/
 
-#include <Arduino.h>
-#include "wiring_private.h"
- Uart mySerial (&sercom0, 3, 2, SERCOM_RX_PAD_1, UART_TX_PAD_0);
+#include "SoftwareSerial.h"
+SoftwareSerial mySerial(11, 10);
 
 # define Start_Byte 0x7E
 # define Version_Byte 0xFF
@@ -17,26 +16,18 @@
 
 # define ACTIVATED LOW
 
-int buttonNext = 2;
-int buttonPause = 3;
-int buttonPrevious = 4;
+
 boolean isPlaying = false;
 
 
 
 void setup () {
 
-pinMode(buttonPause, INPUT);
-digitalWrite(buttonPause,HIGH);
-pinMode(buttonNext, INPUT);
-digitalWrite(buttonNext,HIGH);
-pinMode(buttonPrevious, INPUT);
-digitalWrite(buttonPrevious,HIGH);
-
 mySerial.begin (9600);
 delay(1000);
 playFirst();
 isPlaying = true;
+playNext();
 
 
 }
