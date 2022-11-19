@@ -1,4 +1,3 @@
-// REQUIRED: "cargo add serialport"
 use serialport::SerialPortType::UsbPort;
 
 use std::time;
@@ -22,7 +21,7 @@ fn main() {
                 if usb_port_info.vid == 9025 {
                     println!("Arduino found on {:?}. Attempting to open port...", port_info.port_name);
                     
-                    // attempt to open as a regular port
+                    // attempt to open as a COM port
                     if let Ok(mut port) = serialport::new(port_info.port_name, 115200).open() {
                         println!("Port opened successfully");
 
@@ -31,12 +30,14 @@ fn main() {
                         println!("Relaying current time ({:?})", utc_time);
 
                         // write system time to port
-                        port.write(utc_time.to_string().as_bytes()).expect("Could not write time");
+                        port.write_all(utc_time.to_string().as_bytes())
+                            .expect("Could not write time");
                         
                         // finally, just re-print the incoming serial data
                         println!("Printing serial data:");
-                        let mut serial_buf: Vec<u8> = vec![0; 1];
-                        while let Ok(_) = port.read(serial_buf.as_mut_slice()) {
+
+                        let mut serial_buf: [u8; 1] = [0; 1];
+                        while port.read(serial_buf.as_mut_slice()).is_ok() {
                             io::stdout().write_all(&serial_buf).unwrap();
                         }
 
