@@ -24,9 +24,11 @@ bool h12Flag;
 bool pmFlag;
 bool century = false;
 
+const int buttonPin = 13;
+
 void setup() {
-  Serial.begin(9600);
-  while (!Serial);
+  // Serial.begin(9600);
+  // while (!Serial);
   
   Serial.print("Initializing SD card... ");
   
@@ -48,6 +50,8 @@ void setup() {
   
   Clock.setEpoch({1668600035UL}, false);    // set epoch time (GMT)
   Clock.setClockMode(false);                // 24-hour mode
+
+  pinMode(buttonPin, INPUT);
 }
 
 void playTime() {
@@ -118,40 +122,15 @@ void storeFileSequence(int oldSequence[2], int val1, int val2)
 }
 
 void loop() {
-    // Just for verification of DS3231 Data
-    // check now the data from ESP8266 and DS3231
-    // get year
-    
-    Serial.print("\n\n");
-    Serial.print(" DateTime of DS3231:     ");
-    Serial.print(Clock.getYear(), DEC);
-    Serial.print("-");
-    Serial.print(Clock.getMonth(century), DEC);
-    Serial.print("-");
-    Serial.print(Clock.getDate(), DEC);
-    Serial.print(" ");
-    Serial.print(Clock.getHour(h12Flag, pmFlag), DEC);
-    Serial.print(":");
-    Serial.print(Clock.getMinute(), DEC);
-    Serial.print(":");
-    Serial.print(Clock.getSecond(), DEC);
-    Serial.print("  -  weekday ");
-    Serial.print(Clock.getDoW(), DEC);
-    Serial.println();
+  // Wait for a complete button press and release
+  while (digitalRead(buttonPin) == LOW);
+  while (digitalRead(buttonPin) == HIGH);
 
-    int fileNames[4][2];
+  // Read the time out after 1.5 seconds
+  delay(1500);
 
-    /*parseTime(fileNames);
+  playTime();
 
-    Serial.print(fileNames[0][1], DEC);
-    Serial.print("-");
-    Serial.print(fileNames[1][1], DEC);
-    Serial.print("-");
-    Serial.print(fileNames[2][1], DEC);
-    Serial.print("-");
-    Serial.print(fileNames[3][1], DEC);*/
-
-    playTime();
- 
-    delay(3000);
+  // Delay 2 seconds
+  delay(2000);
 }
