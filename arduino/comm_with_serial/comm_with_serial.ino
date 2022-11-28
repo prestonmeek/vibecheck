@@ -15,7 +15,10 @@ bool
     century = false;
 
 void setup() {
-  Serial.begin(115200);
+  pinMode(7, OUTPUT);
+  digitalWrite(7, LOW);
+  
+  Serial.begin(19200);
   Wire.begin();
 }
 
@@ -32,6 +35,10 @@ void loop() {
       Serial.print("Set new epoch time to ");
       Serial.println(epoch_time);
     }
+
+    Serial.print("DOW: ");
+    Serial.print(Clock.getDoW());
+    Serial.print(" ");
   
     Serial.print(Clock.getMonth(century));
     Serial.print("-");
