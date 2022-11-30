@@ -33,7 +33,7 @@ void setup() {
     Serial.println("Initialization failed!");
   }
 
-  Player->volume(25);  // 0-30
+  Player->volume(30);  // 0-30
 
   Serial.print("Initializing RTC module... ");
   Wire.begin(); // begins I2C comm

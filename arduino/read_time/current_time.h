@@ -18,7 +18,7 @@ struct CurrentTime {
     static CurrentTime get(DS3231& _clock) {
         CurrentTime c_time;
 
-        bool _century; // century flag, is ignored
+        bool _century = false; // century flag, is ignored
         c_time._month = _clock.getMonth(_century); // month
         c_time._day = _clock.getDate(); // day
         c_time._weekday = _clock.getDoW(); // weekday # (i.e. 0 = sunday, 1 = monday, etc)

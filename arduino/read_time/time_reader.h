@@ -39,23 +39,25 @@ private:
     public:
         // parses a file sequence from the current time
         FileSequence(CurrentTime& _time) {
-            _sequence[0] = File { 0, 0 }; // weekday, temporary
-            _sequence[1] = File { 0, _time._month }; // month, temporary
-            _sequence[2] = File { 0, _time._day }; // day, temporary
+            _sequence[0] = File { 1, _time._weekday }; // weekday, temporary
+            _sequence[1] = File { 1, _time._month }; // month, temporary
+            _sequence[2] = File { 1, _time._day }; // day, temporary
 
-            _sequence[3] = File { 0, _time._hour }; // current hour
+            _sequence[3] = File { 1, _time._hour }; // current hour
             _sequence[4] = _time._minute < 10 ? File { 3, 1 } : File { 0, 0 }; // if current minute is less than 10 say 'o'
-            _sequence[5] = File { 0, _time._minute };
+            _sequence[5] = File { 1, _time._minute };
 
-            _sequence[6] = File { 1, _time._pm_flag + 1 }; // either AM or PM
+            _sequence[6] = File { 2, _time._pm_flag + 1 }; // either AM or PM
         }
 
         // plays the file sequence out loud
         void play(DFPlayer& _player) {
+            _player.playFolder(0, 0); // not sure why we need this but it seems to work
+            
             for (uint8_t i = 0; i < 7; i++) { // go through each element of the sequence
-                if (_sequence[i]._folder != 0 || _sequence[i]._file_id != 0) { // if this is an actual file
+                if (_sequence[i]._folder != 0 && _sequence[i]._file_id != 0) { // if this is an actual file
                     _player.playFolder(_sequence[i]._folder, _sequence[i]._file_id); // play the selected file
-                    delay(1300); // TODO: connect the BUSY pin of the DFPlayer to a pin of the ATMega and use that method to wait until playback is done
+                    delay(2000); // TODO: connect the BUSY pin of the DFPlayer to a pin of the ATMega and use that method to wait until playback is done
                 }
             }
         }
