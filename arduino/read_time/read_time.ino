@@ -23,32 +23,21 @@ void setup() {
   Player = new DFPlayer;
   Clock = new DS3231;
 
-  // start debug serial
-  Serial.begin(9600);
-  Serial.print("Initializing SD card... ");
-  
   // DFPlayer Mini uses a 9600 baud rate.
   softwareSerial->begin(9600);
-  if (!Player->begin(*softwareSerial)) {
-    Serial.println("Initialization failed!");
-  }
-
+  Player->begin(*softwareSerial);
   Player->volume(30);  // 0-30
 
-  Serial.print("Initializing RTC module... ");
   Wire.begin(); // begins I2C comm
-  Serial.println("initialization done.");
 
-  Serial.println("Playing audio files...");
-  TimeReader::play_time(*Clock, *Player);
-
-  Serial.println("Audio done. Powering off");
+  TimeReader::play_time(*Clock, *Player); // get the date and time and announce it
 
   delay(10);
   digitalWrite(7, LOW); // turns circuit off
   delay(10);
 
   // if the circuit is still on, then the button is being held, indicating the user wants to enter programming mode.
+  Serial.begin(9600);
   Serial.println("Entering programming mode...");
 
   // continue in the loop() function
