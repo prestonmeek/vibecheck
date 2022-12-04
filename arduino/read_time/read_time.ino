@@ -14,33 +14,34 @@ DFPlayer* Player; // For communicating with DFPlayer Mini, uses above software s
 DS3231* Clock; // For communicating with the DS3231 RTC Module
 
 void setup() {
-  // auto-off is tied to pin 7. digitalWrite is called first for speed
-  digitalWrite(7, HIGH);
-  pinMode(7, OUTPUT);
+    // auto-off is tied to pin 7
+    pinMode(7, OUTPUT);
+    digitalWrite(7, HIGH);
 
-  // switched to using pointers to save as much time as possible to get pin 7 high
-  softwareSerial = new SoftwareSerial(2, 3);
-  Player = new DFPlayer;
-  Clock = new DS3231;
+    // switched to using pointers to save as much time as possible to get pin 7 high
+    softwareSerial = new SoftwareSerial(2, 3);
+    Player = new DFPlayer;
+    Clock = new DS3231;
 
-  // DFPlayer Mini uses a 9600 baud rate.
-  softwareSerial->begin(9600);
-  Player->begin(*softwareSerial);
-  Player->volume(30);  // 0-30
+    // DFPlayer Mini uses a 9600 baud rate.
+    softwareSerial->begin(9600);
+    Player->begin(*softwareSerial);
+    Player->volume(25);  // 0-30
 
-  Wire.begin(); // begins I2C comm
+    Wire.begin(); // begins I2C comm
 
-  TimeReader::play_time(*Clock, *Player); // get the date and time and announce it
+    delay(50); // allow time for initialization of everything
+    TimeReader::play_time(*Clock, *Player); // get the date and time and announce it
 
-  delay(10);
-  digitalWrite(7, LOW); // turns circuit off
-  delay(10);
+    delay(10); // allow rest of serial output to go through
+    digitalWrite(7, LOW); // turns circuit off
+    delay(10); // allow for auto-off pin to cut current flow before proceeding
 
-  // if the circuit is still on, then the button is being held, indicating the user wants to enter programming mode.
-  Serial.begin(9600);
-  Serial.println("Entering programming mode...");
+    // if the circuit is still on, then the button is being held, indicating the user wants to enter programming mode.
+    Serial.begin(9600);
+    Serial.println("Entering programming mode...");
 
-  // continue in the loop() function
+    // continue in the loop() function
 }
 
 void loop() {

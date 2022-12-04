@@ -1,3 +1,4 @@
 */target/*
 *.hex
-*/.idea/*
+util/get_audio_lengths/microsd backup
+util/get_audio_lengths/target

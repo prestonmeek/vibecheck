@@ -85,7 +85,7 @@ void printTime()
     second = rtc.getSecond();
 
   Serial.print("Today is ");
-  Serial.print(days[weekday]);
+  Serial.print(days[weekday - 1]);
   Serial.print(", ");
   Serial.print(months[month - 1]);
   Serial.print(" ");

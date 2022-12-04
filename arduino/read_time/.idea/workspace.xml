@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c8bcc5e6-fc3a-4bf6-aeb3-8e63ef0988bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/file_lengths.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/current_time.h" beforeDir="false" afterPath="$PROJECT_DIR$/current_time.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/print_time.h" beforeDir="false" afterPath="$PROJECT_DIR$/print_time.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_time.ino" beforeDir="false" afterPath="$PROJECT_DIR$/read_time.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/time_reader.h" beforeDir="false" afterPath="$PROJECT_DIR$/time_reader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/001.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/001.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/002.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/002.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/003.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/003.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/004.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/004.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/005.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/005.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/006.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/006.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/007.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/007.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/008.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/008.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/009.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/009.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/010.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/010.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/011.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/011.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/012.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/012.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/013.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/013.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/014.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/014.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/015.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/015.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/016.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/016.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/017.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/017.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/018.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/018.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/019.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/019.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/020.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/020.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/021.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/021.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/022.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/022.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/023.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/023.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/024.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/024.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/025.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/025.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/026.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/026.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/027.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/027.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/028.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/028.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/029.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/029.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/030.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/030.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/031.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/031.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/032.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/032.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/033.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/033.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/034.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/034.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/035.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/035.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/036.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/036.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/037.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/037.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/038.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/038.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/039.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/039.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/040.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/040.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/041.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/041.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/042.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/042.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/043.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/043.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/044.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/044.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/045.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/045.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/046.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/046.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/047.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/047.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/048.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/048.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/049.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/049.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/050.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/050.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/051.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/051.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/052.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/052.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/053.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/053.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/054.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/054.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/055.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/055.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/056.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/056.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/057.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/057.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/058.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/058.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microsd backup/01/059.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/../../microsd backup/01/059.mp3" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IHckwbbPKi1tBX9IT3nyXost9m" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8bcc5e6-fc3a-4bf6-aeb3-8e63ef0988bb" name="Changes" comment="" />
+      <created>1669842097083</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669842097083</updated>
+      <workItem from="1669842098483" duration="830000" />
+      <workItem from="1670176341339" duration="12394000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
