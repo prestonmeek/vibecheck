@@ -26,7 +26,7 @@ void setup() {
     // DFPlayer Mini uses a 9600 baud rate.
     softwareSerial->begin(9600);
     Player->begin(*softwareSerial);
-    Player->volume(30);  // 0-30
+    Player->volume(20);  // 0-30
 
     Wire.begin(); // begins I2C comm
 
